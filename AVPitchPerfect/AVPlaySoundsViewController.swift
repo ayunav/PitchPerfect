@@ -30,11 +30,29 @@ class AVPlaySoundsViewController: UIViewController {
     
     @IBAction func playSoundForButton(sender: UIButton) {
         print("Play sound for button pressed")
+        
+        switch(ButtonType(rawValue: sender.tag)!) {
+        case .Slow:
+            playSound(rate: 0.5)
+        case .Fast:
+            playSound(rate: 1.5)
+        case .Chipmunk:
+            playSound(pitch: 1000)
+        case .Vader:
+            playSound(pitch: -1000)
+        case .Echo:
+            playSound(echo: true)
+        case .Reverb:
+            playSound(reverb: true)
+        }
+        
+        configureUI(.Playing)
     }
     
     
     @IBAction func stopButtonPressed(sender: UIButton) {
         print("Stop Audio button pressed")
+        stopAudio()
     }
     
     
@@ -44,10 +62,12 @@ class AVPlaySoundsViewController: UIViewController {
         setupAudio()
     }
     
+    
     override func viewWillAppear(animated: Bool) {
         configureUI(.NotPlaying)
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
