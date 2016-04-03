@@ -3,12 +3,13 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Record Sounds View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="AVPitchPerfect" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="AVRecordSoundsViewController" customModule="AVPitchPerfect" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -29,7 +30,6 @@
                                 <state key="normal" backgroundImage="stopButton"/>
                                 <connections>
                                     <action selector="stopRecording:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rLd-yI-7bC"/>
-                                    <segue destination="I2R-O4-ehq" kind="show" id="UIu-fP-C2P"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to Record" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQI-y1-z6a">
@@ -54,16 +54,17 @@
                         <outlet property="recordButton" destination="A1h-TV-qyO" id="MMs-SJ-m9q"/>
                         <outlet property="recordingLabel" destination="MQI-y1-z6a" id="zGP-Hc-vFN"/>
                         <outlet property="stopRecordingButton" destination="bfv-Mr-Qvq" id="xzg-zd-3gV"/>
+                        <segue destination="I2R-O4-ehq" kind="show" identifier="stopRecording" id="Qb6-YT-mFT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1087" y="337"/>
         </scene>
-        <!--View Controller-->
+        <!--Play Sounds View Controller-->
         <scene sceneID="hMX-hd-7It">
             <objects>
-                <viewController id="I2R-O4-ehq" sceneMemberID="viewController">
+                <viewController id="I2R-O4-ehq" customClass="AVPlaySoundsViewController" customModule="AVPitchPerfect" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gAw-PZ-Rkd"/>
                         <viewControllerLayoutGuide type="bottom" id="eJT-Xg-qZF"/>
@@ -71,7 +72,28 @@
                     <view key="view" contentMode="scaleToFill" id="Yai-FN-gMx">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="0.1545279209" blue="0.14435110910000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Zwp-R5-Art">
+                                <rect key="frame" x="20" y="64" width="560" height="536"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="COg-2x-okf">
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="536"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="53h-4A-eKr">
+                                                <rect key="frame" x="0.0" y="0.0" width="560" height="536"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Zwp-R5-Art" firstAttribute="top" secondItem="gAw-PZ-Rkd" secondAttribute="bottom" id="K0h-rw-Jta"/>
+                            <constraint firstItem="eJT-Xg-qZF" firstAttribute="top" secondItem="Zwp-R5-Art" secondAttribute="bottom" id="Qhb-mg-Wdo"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Zwp-R5-Art" secondAttribute="trailing" id="RPy-aI-sqJ"/>
+                            <constraint firstItem="Zwp-R5-Art" firstAttribute="leading" secondItem="Yai-FN-gMx" secondAttribute="leadingMargin" id="fsX-1w-YoI"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bbu-th-gBB" userLabel="First Responder" sceneMemberID="firstResponder"/>
